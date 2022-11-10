@@ -40,27 +40,33 @@ marca.addEventListener('change', e =>{
 })
 
 year.addEventListener('change', e =>{
-    datosBusqueda.year = e.target.value
+    datosBusqueda.year = parseInt(e.target.value)
+    filtrarAuto()
 })
 
 minimo.addEventListener('change', e =>{
-    datosBusqueda.minimo = e.target.value
+    datosBusqueda.minimo = parseInt(e.target.value)
+    filtrarAuto()
 })
 
 maximo.addEventListener('change', e =>{
     datosBusqueda.maximo = e.target.value
+    filtrarAuto()
 })
 
 puertas.addEventListener('change', e =>{
-    datosBusqueda.puertas = e.target.value
+    datosBusqueda.puertas = parseInt(e.target.value)
+    filtrarAuto()
 })
 
 transmision.addEventListener('change', e =>{
     datosBusqueda.transmision = e.target.value
+    filtrarAuto()
 })
 
 color.addEventListener('change', e=>{
     datosBusqueda.color = e.target.value
+    filtrarAuto()
 })
 
 //Funcionaes 
@@ -91,7 +97,7 @@ function llenarSelector(){
 
 //Función que filtra en base a la búsqueda
 function filtrarAuto(){
-    const resultado = autos.filter(filtrarMarca)
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
     console.log (resultado)
 
 }
@@ -99,6 +105,13 @@ function filtrarAuto(){
 function filtrarMarca(auto){
     if(datosBusqueda.marca){
         return auto.marca === datosBusqueda.marca
+    }
+    return auto
+}
+
+function filtrarYear(auto){
+    if(datosBusqueda.year){
+        return auto.year === datosBusqueda.year
     }
     return auto
 }
