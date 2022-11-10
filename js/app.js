@@ -27,7 +27,7 @@ const datosBusqueda = {
 //Eventos
 document.addEventListener('DOMContentLoaded', ()=>{
     //Muestra los autos al cargar
-    mostrarAutors()
+    mostrarAutors(autos)
 
     //Llena las opciones de años
     llenarSelector()
@@ -50,7 +50,7 @@ minimo.addEventListener('change', e =>{
 })
 
 maximo.addEventListener('change', e =>{
-    datosBusqueda.maximo = e.target.value
+    datosBusqueda.maximo = parseInt(e.target.value)
     filtrarAuto()
 })
 
@@ -70,7 +70,10 @@ color.addEventListener('change', e=>{
 })
 
 //Funcionaes 
-function mostrarAutors(){
+function mostrarAutors(autos){
+
+    limpiarHTML() //Elimina el HTML previo
+
     autos.forEach(auto =>{
         const autoHTML = document.createElement('p') 
         
@@ -83,6 +86,13 @@ function mostrarAutors(){
         //Insertar en el HTML
         resultado.appendChild(autoHTML)
     })
+}
+
+//Limpiar HTML
+function limpiarHTML(){
+    while(resultado.firstChild){
+        resultado.removeChild(resultado.firstChild)
+    }
 }
 
 //Genera los años del select
@@ -98,7 +108,9 @@ function llenarSelector(){
 //Función que filtra en base a la búsqueda
 function filtrarAuto(){
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
-    console.log (resultado)
+    //console.log (resultado)
+
+    mostrarAutors(resultado)
 
 }
 
