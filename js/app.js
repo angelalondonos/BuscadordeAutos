@@ -107,7 +107,7 @@ function llenarSelector(){
 
 //Función que filtra en base a la búsqueda
 function filtrarAuto(){
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor)
     //console.log (resultado)
 
     mostrarAutors(resultado)
@@ -124,6 +124,41 @@ function filtrarMarca(auto){
 function filtrarYear(auto){
     if(datosBusqueda.year){
         return auto.year === datosBusqueda.year
+    }
+    return auto
+}
+
+function filtrarMinimo(auto){
+    if(datosBusqueda.minimo){
+        return auto.precio >= datosBusqueda.minimo
+    }
+    return auto
+}
+
+function filtrarMaximo(auto){
+    if(datosBusqueda.maximo){
+        return auto.precio <= datosBusqueda.maximo
+    }
+    return auto
+}
+
+function filtrarPuertas(auto){
+    if(datosBusqueda.puertas){
+        return auto.puertas === datosBusqueda.puertas
+    }
+    return auto
+}
+
+function filtrarTransmision(auto){
+    if(datosBusqueda.transmision){
+        return auto.transmision === datosBusqueda.transmision
+    }
+    return auto
+}
+
+function filtrarColor(auto){
+    if(datosBusqueda.color){
+        return auto.color === datosBusqueda.color
     }
     return auto
 }
